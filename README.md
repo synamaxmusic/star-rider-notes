@@ -3,10 +3,10 @@ Reverse engineering notes about the 1983 laserdisc arcade game, "Star Rider"
 
 Huge thanks to Matt O. for his work on reverse engineering the game so far.  
 
-You can check out his documentation and notes here:
+You can check out his documentation here:
 https://www.daphne-emu.com:9443/mediawiki/index.php/StarRiderMainCpu
 
-His work have proven to be extremely helpful to me with these new findings.
+His notes has proven to be extremely helpful with these new findings.
 
 ----
 
@@ -98,6 +98,19 @@ ROBOFFICIAL table
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
 ![biker_00_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/e7f7fcce-a82d-4c21-86fc-622dff7246d8)
+![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
+![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
+
+
+![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
+![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
+![biker_01_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/1be5f1b0-ef00-413d-b81a-ac6523252223)
+![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
+![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
+
+![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
+![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
+![biker_02_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/63746177-b4da-418e-8abd-6c1a4089719d)
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
