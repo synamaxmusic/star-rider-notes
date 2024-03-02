@@ -8,6 +8,8 @@ https://www.daphne-emu.com:9443/mediawiki/index.php/StarRiderMainCpu
 
 His notes has proven to be extremely helpful with these new findings.
 
+Shout out to Sean Riddle as well for his very useful [Williams GFX Ripper](http://www.seanriddle.com/ripper.html) program, which allows me to view these sprites outside of the game (albeit with incorrect colors).  Star Rider uses 16-bit colors, whereas earlier Williams game use just 8-bit color palettes.  The only Star Rider sprite that displays correctly with this program is the Sinistar easter egg since it uses the same color palette from the original game.
+
 ----
 
 There are several tables in the ROMs that organize the insane amount of sprites this game has.  The program uses a paging system to access all the different roms:
@@ -37,14 +39,15 @@ U46|0xC000-0xFFFF|N/A (text fonts)
 
 ----
 
-9BC0 = 1BC0 (ROM_34.U45)
 
-List of sprite definitions for first two image roms
+Here's a table of sprite definitions for the first two image roms.  This table can be found at $1BC0 in ROM_34.U45.  $1BC0 equates to $9BC0 in RAM.
 
-(Width, Height, Padding, 16-bit Address)
+Table format is as follows:
+(Width, Height, Image Page 0, 16-bit Address)
 
-ROBOFFICIAL table 
 ```
+ROBOFFICIAL sprite table 
+
 12 24 00 00 2F 
 12 20 00 02 B7 
 12 20 00 04 F7 
@@ -93,6 +96,8 @@ ROBOFFICIAL table
 ```
 
 ![joust_starrider](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/3e500708-6b5c-4503-84b1-e2d90e4aa693)
+![sinistar_5x](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a7fbd416-4c78-43b7-be7e-27c10c8e2d73)
+
 
 
 ----
@@ -122,7 +127,9 @@ ROM_31.U15 ($33CA-$3F7D)
 
 (16-bit address, IMAGE PAGE, Width, Height, Screen Position bytes?)
 
-39 groups in total / 38 groups have 11 rows, but last group appears to have only 10 rows / Biker positions go from left to right 
+39 groups in total / 38 groups have 11 rows, but last group appears to have only 10 rows
+
+Biker positions go from left to right 
 
 Rows: 0-3 = left, 4 = center left, 5 = center, 6 = center right, 7-A = right
 
@@ -593,3 +600,89 @@ Rows: 0-3 = left, 4 = center left, 5 = center, 6 = center right, 7-A = right
 7F 8F 05 04 0E 02 04 
 5E 27 08 02 03 00 00
 ```
+----
+
+Third sprite table found in ROM_31.U15 ($118E-$13BD)
+
+```
+00 2D 09 10 22 13 1D 
+65 9F 08 12 20 11 3F 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+67 DF 08 10 20 0E 37 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+69 DF 08 0E 22 0D 32 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+6B BB 08 10 22 0F 2D 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+6D DB 08 10 22 0F 29 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+6F FB 08 0E 24 0D 27 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+71 F3 08 0D 24 0C 24 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+73 C7 08 0C 24 0C 21 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+75 77 08 0C 26 0B 20 
+5E 45 08 10 22 0C 1D 
+00 2D 09 10 22 13 1D 
+77 3F 08 0B 22 0A 1D 
+5E 45 08 10 22 0C 1D 
+02 4D 09 0E 1E 0F 1A 
+78 B5 08 0A 1E 09 1A 
+60 65 08 0E 1E 0A 1A 
+03 F1 09 0D 1A 0E 16 
+79 E1 08 08 1A 07 16 
+62 09 08 0C 1A 09 16 
+05 43 09 0B 16 0C 13 
+7A B1 08 07 16 06 13 
+63 41 08 0B 16 07 13 
+06 35 09 09 12 0A 10 
+7B 4B 08 06 12 05 10 
+64 33 08 09 12 06 10 
+06 D7 09 07 0E 07 0C 
+7B B7 08 05 0E 04 0C 
+64 D5 08 07 0E 05 0C 
+07 39 09 05 0A 04 09 
+7B FD 08 04 0A 02 09 
+65 37 08 05 09 03 08 
+07 6B 09 04 08 04 07 
+7C 25 08 03 08 01 07 
+65 64 08 04 08 03 07 
+07 8B 09 03 06 02 05 
+7C 3D 08 02 05 00 04 
+65 84 08 03 06 02 05 
+07 9D 09 02 04 01 03 
+7C 47 08 02 03 00 02 
+65 96 08 02 04 01 03 
+07 A5 09 01 01 00 00 
+7C 4D 08 01 02 00 01 
+65 9E 08 01 01 00 00 
+07 A6 09 0A 37 09 24 
+09 CC 09 0A 34 09 22 
+0B D4 09 09 30 08 1F 
+0D 84 09 08 2C 07 1C 
+0E E4 09 07 28 06 1A 
+0F FC 09 07 24 06 17 
+10 F8 09 06 20 05 14 
+11 B8 09 06 1C 04 12 
+12 60 09 05 18 03 0F 
+12 D8 09 05 14 03 0C 
+13 3C 09 04 10 02 0A 
+13 7C 09 03 0C 01 07 
+13 A0 09 03 08 01 04 
+13 B8 09 01 03 00 01 
+16 38 09 0D 0A 0C 09 
+16 BA 09 0D 0A 0B 09 
+18 54 09 0E 0A 0F 09 
+18 E0 09 0E 0A 0E 09 
+17 3C 09 0E 0A 08 09 
+17 C8 09 0E 0A 0C 09 
+````
