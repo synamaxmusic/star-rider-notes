@@ -92,6 +92,9 @@ ROBOFFICIAL table
 81 01 00 78 3F = ??? (some sort of debug guide???)
 ```
 
+![joust_starrider](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/3e500708-6b5c-4503-84b1-e2d90e4aa693)
+
+
 ----
 
 
