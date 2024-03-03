@@ -6,9 +6,9 @@ Thanks to Matt O. for his work on reverse engineering the game so far.
 You can check out his documentation here:
 https://www.daphne-emu.com:9443/mediawiki/index.php/StarRiderMainCpu
 
-His notes has proven to be extremely helpful with these new findings.
+His notes have proven to be extremely helpful with these new findings.
 
-Shout out to Sean Riddle as well for his very useful [Williams GFX Ripper](http://www.seanriddle.com/ripper.html) program, which allows me to view these sprites outside of the game (albeit with incorrect colors).  Star Rider uses 16-bit colors, whereas earlier Williams game use just 8-bit color palettes.  The only Star Rider sprite that displays correctly with this program is the Sinistar easter egg since it uses the same color palette from the original game.
+Shout out to Sean Riddle as well for his very useful [Williams GFX Ripper](http://www.seanriddle.com/ripper.html) program, which allows me to view these sprites outside of the game (albeit with incorrect colors).  Star Rider uses 16-bit colors, whereas earlier Williams game use just 8-bit color palettes.  The only Star Rider sprite that appears to display correctly with this program is the Sinistar easter egg since it uses the same color palette from the original game.
 
 ----
 
@@ -106,6 +106,7 @@ This Joust Ostrich sprite shows up as an easter egg at the very end of Stalactia
 
 And this Sinistar sprite shows up in the middle of the Milky Way racetrack.  Both easter eggs pop up at the top left corner of the screen.
 
+With this table, we're able to reconstruct the source code to build the first two Image ROMs.  [Click this text to view the code!](starrider_image_0.asm)
 
 ----
 
