@@ -687,6 +687,8 @@ Rows: 0-3 = left, 4 = center left, 5 = center, 6 = center right, 7-A = right
 ```
 ----
 
+## Rear-view sprite tables
+
 Third sprite table found in ROM_31.U15 ($118E-$13BD) used for rear-view mirror
 
 20 groups use left-to-right positioning with three rows: 1 = Left (Right-side of rear view), 2 = Center, 3 = Right (Left-side of rear view)
@@ -800,4 +802,73 @@ Rear view flames:
 
 17 3C 09 0E 0A 08 09 = Left (Right-view)
 17 C8 09 0E 0A 0C 09 
-````
+```
+
+Another sprite table is separate from this one and is responsible for animating the rear-view of the player's bike jet exhaust and tail fin.  It's found in ROM_34.U45 at address $1532.
+
+There's another jet exhaust sprite at $13FC that has no flames, it's quite possible that this is unused since it is not included in this table.
+
+```
+14 80 09 0D 0B 0C 0A 
+15 0F 09 0D 0B 0C 0A 
+14 80 09 0D 0B 0C 0A 
+15 9E 09 0E 0B 0D 0A
+```
+
+## U13 (Image Page 9) sprite definitions
+
+Yet another sprite table found in ROM_34.U45 at address $18E2.  This is for some but not all sprites in ROM_19.U13 (Image Page 9).  Each sprite is defined in 6 bytes.  Explosion particle effects are found here.  I don't recognize the sprites starting at $196C-$2148.  $2149 is one of the larger explosion fireball sprites...the one at $2062 might be unused.
+
+```
+1F 9C 0B 12 0A 08 
+1E 94 0C 16 0B 0A 
+1D B8 0B 14 0A 09 
+1C DC 0B 14 0A 09 
+1C D8 02 02 01 00 
+1C C6 03 06 02 02 
+1C A6 04 08 03 03 
+1C 74 05 0A 04 04 
+1C 38 05 0C 04 05 
+1B E4 06 0E 05 06 
+1B 82 07 0E 06 06 
+1A F2 08 12 07 08 
+1A 3E 09 14 08 09 
+19 6C 0A 15 09 0A 
+2B F5 02 02 01 00 
+2B F9 02 02 01 00 
+2B FD 02 02 01 00 
+2B F9 02 02 01 00 
+2C 01 03 04 02 01 
+2C 0D 04 06 03 02 
+2C 25 03 04 02 01 
+2C 0D 04 06 03 02 
+2C 31 04 07 03 03 
+2C 4D 05 08 04 03 
+2C 75 04 08 03 03 
+2C 4D 05 08 04 03 
+2C 95 06 0B 05 05 
+2C D7 07 0B 06 05 
+2D 24 06 0C 05 05 
+2C D7 07 0B 06 05 
+2D 6C 08 0F 07 07 
+2D E4 09 10 08 07 
+2E 74 09 0F 08 07 
+2D E4 09 10 08 07 
+2E FB 0B 15 0A 0A 
+2F E2 0B 14 0A 09 
+30 BE 0B 16 0A 0A 
+2F E2 0B 14 0A 09 
+31 B0 0E 1C 0D 0D 
+33 38 0F 1C 0E 0D 
+34 DC 0E 1C 0D 0D 
+33 38 0F 1C 0E 0D 
+36 64 11 22 10 10 
+38 A6 12 24 11 11 
+3B 2E 11 21 10 10 
+38 A6 12 24 11 11 
+21 49 15 29 14 14 
+24 A6 16 2C 15 15 
+28 6E 15 2B 14 15 
+24 A6 16 2C 15 15
+```
+
