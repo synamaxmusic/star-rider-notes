@@ -1,7 +1,7 @@
 # star-rider-notes
 Reverse engineering notes about the 1983 laserdisc arcade game, "Star Rider"
 
-Huge thanks to Matt O. for his work on reverse engineering the game so far.  
+Thanks to Matt O. for his work on reverse engineering the game so far.  
 
 You can check out his documentation here:
 https://www.daphne-emu.com:9443/mediawiki/index.php/StarRiderMainCpu
@@ -11,6 +11,8 @@ His notes has proven to be extremely helpful with these new findings.
 Shout out to Sean Riddle as well for his very useful [Williams GFX Ripper](http://www.seanriddle.com/ripper.html) program, which allows me to view these sprites outside of the game (albeit with incorrect colors).  Star Rider uses 16-bit colors, whereas earlier Williams game use just 8-bit color palettes.  The only Star Rider sprite that displays correctly with this program is the Sinistar easter egg since it uses the same color palette from the original game.
 
 ----
+
+## Image Page
 
 There are several tables in the ROMs that organize the insane amount of sprites this game has.  The program uses a paging system to access all the different roms:
 
@@ -39,6 +41,7 @@ U46|0xC000-0xFFFF|N/A (text fonts)
 
 ----
 
+## Sprite Definitions for first two image ROMs
 
 Here's a table of sprite definitions for the first two image roms.  This table can be found at $1BC0 in ROM_34.U45.  $1BC0 equates to $9BC0 in RAM.
 
@@ -96,12 +99,21 @@ ROBOFFICIAL sprite table
 ```
 
 ![joust_starrider](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/3e500708-6b5c-4503-84b1-e2d90e4aa693)
+
+This Joust Ostrich sprite shows up as an easter egg at the very end of Stalactia right before the finish line at the Comsodrome.
+
 ![sinistar_5x](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a7fbd416-4c78-43b7-be7e-27c10c8e2d73)
 
+And this Sinistar sprite shows up in the middle of the Milky Way racetrack.  Both easter eggs pop up at the top left corner of the screen.
 
 
 ----
 
+## Biker images
+
+There is a giant table located in ROM_31.U15 at address range $33CA-$3F7D that defines all the biker sprites and what groups they belong to.
+
+Group 00 (duplicate table defines not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -109,6 +121,7 @@ ROBOFFICIAL sprite table
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
+Group 01 (duplicate table defines not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -116,18 +129,61 @@ ROBOFFICIAL sprite table
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
+Group 02 (duplicate table defines not shown):
+
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
 ![biker_02_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/63746177-b4da-418e-8abd-6c1a4089719d)
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
+The table structure for these groups looks like this (Group 00 used as an example):
+
+16-bit address|Image Page|Width|Height|two Screen Position bytes?
+| --- | --- | --- | --- | --- |
+1287|01|36|57|44 5C 
+1287|01|36|57|44 5C 
+1287|01|36|57|44 5C 
+1287|01|36|57|44 5C 
+5745|01|32|54|3D 71 
+42D5|03|28|51|29 83 
+46DD|01|32|54|26 71 
+002D|01|36|57|27 5C 
+002D|01|36|57|27 5C 
+002D|01|36|57|27 5C 
+002D|01|36|57|27 5C
+
+Note the duplicate entries in this table.  Multiple sprites are reused for different positions so there will be several duplicate images for many groups.
+
+With the exception of the last group, there appears to be 11 different "positions" for each group.  The last group has 10 position entries instead.
+
+Positions for the bikers are organized from left to right like this:
+
+
+0 |1 |2 |3 |4 |5|6 |7 |8 |9 |A
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+L5|L4|L3|L2|L1|C|R1|R2|R3|R4|R5
+
+If we start with number 0, center will always be position 5.
+
+It's possible that L5 and R5 are not used but it helps to think that both left and right directions can have 5 possible different sprites assigned.
+
+For example, the first group contains the biker sprites that are closest to the player (with the bikers getting farther away from the player with each successive group). The first 20 groups appear to have their sprites organized like this:
+
+0 |1 |2 |3 |4 |5|6 |7 |8 |9 |A
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+L2|L2|L2|L2|L1|C|R1|R2|R2|R2|R2
+
+Scale groups 00 to 05 reuse the same BIKE_00_L2 and BIKE_00_R2 sprites. 
+
+There are at least 38 scale levels. Group 39 appears to be different from the rest with 10 positions instead of 11, so we'll ignore that one for now.
+
 ```
 ROM_31.U15 ($33CA-$3F7D)
 
 (16-bit address, IMAGE PAGE, Width, Height, Screen Position bytes?)
 
-39 groups in total / 38 groups have 11 rows, but last group appears to have only 10 rows
+38 groups have 11 rows, but last group appears to have only 10 rows.
 
 Biker positions go from left to right 
 
