@@ -122,7 +122,7 @@ The entire table has 39 "scale groups".  With the exception of the last group, t
 
 In the recreated source code, group numbers are hexadecimal.
 
-Group $00 (duplicate table defines not shown):
+Group $00 (duplicate table positions not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -130,7 +130,7 @@ Group $00 (duplicate table defines not shown):
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
-Group $01 (duplicate table defines not shown):
+Group $01 (duplicate table positions not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -138,7 +138,7 @@ Group $01 (duplicate table defines not shown):
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
-Group $02 (duplicate table defines not shown):
+Group $02 (duplicate table positions not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
