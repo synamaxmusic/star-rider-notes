@@ -114,7 +114,15 @@ With this table, we're able to reconstruct the source code to build the first tw
 
 There is a giant table located in ROM_31.U15 at address range $33CA-$3F7D that defines all the biker sprites and what groups they belong to.
 
-Group 00 (duplicate table defines not shown):
+This table is very important as all the different biker sprites are haphazardly scattered throughout the image roms so following this will help us figure out which positions and scaling (or level-of-detail) these bikers belong to.
+
+The table also has the width and height for each sprite.  With the large biker sprites, it's pretty easy to figure out the image's dimensions without referring to this table, but as the sprite get smaller and smaller it gets extremely difficult to determine the true size of the sprite.  The smallest biker sprite I've found so far is 2 x 3 pixels!
+
+The entire table has 39 "scale groups".  With the exception of the last group, there are 11 different rows or "positions" for each group.  The last group has 10 position entries instead.  Each row has 7 bytes.  
+
+In the recreated source code, group numbers are hexadecimal.
+
+Group $00 (duplicate table defines not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -122,7 +130,7 @@ Group 00 (duplicate table defines not shown):
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
-Group 01 (duplicate table defines not shown):
+Group $01 (duplicate table defines not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -130,7 +138,7 @@ Group 01 (duplicate table defines not shown):
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
-Group 02 (duplicate table defines not shown):
+Group $02 (duplicate table defines not shown):
 
 ![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
 ![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
@@ -138,46 +146,66 @@ Group 02 (duplicate table defines not shown):
 ![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
 ![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
 
-The table structure for these groups looks like this (Group 00 used as an example):
+### Groups $00-$25 (11 horizontal Biker positions)
 
-16-bit address|Image Page|Width|Height|two Screen Position bytes?
-| --- | --- | --- | --- | --- |
-1287|01|36|57|44 5C 
-1287|01|36|57|44 5C 
-1287|01|36|57|44 5C 
-1287|01|36|57|44 5C 
-5745|01|32|54|3D 71 
-42D5|03|28|51|29 83 
-46DD|01|32|54|26 71 
-002D|01|36|57|27 5C 
-002D|01|36|57|27 5C 
-002D|01|36|57|27 5C 
-002D|01|36|57|27 5C
+A row for each group contains 7 bytes.  The table structure looks like this (Group 00 used as an example...Biker Position and Biker Sprite Name are not in the table data and are for reference only):
 
-Note the duplicate entries in this table.  Multiple sprites are reused for different positions so there will be several duplicate images for many groups.
+16-bit address|Image Page|Width|Height|two Screen Position bytes?|Biker Position|Biker Sprite Name
+| --- | --- | --- | --- | --- | --- | --- |
+1287|01|36|57|44 5C |L5|BIKE_00_L2
+1287|01|36|57|44 5C |L4|BIKE_00_L2
+1287|01|36|57|44 5C |L3|BIKE_00_L2
+1287|01|36|57|44 5C |L2|BIKE_00_L2
+5745|01|32|54|3D 71 |L1|BIKE_00_L1
+42D5|03|28|51|29 83 |Center|BIKE_00_CP
+46DD|01|32|54|26 71 |R1|BIKE_00_R1
+002D|01|36|57|27 5C |R2|BIKE_00_R2
+002D|01|36|57|27 5C |R3|BIKE_00_R2
+002D|01|36|57|27 5C |R4|BIKE_00_R2
+002D|01|36|57|27 5C |R5|BIKE_00_R2
 
-With the exception of the last group, there appears to be 11 different "positions" for each group.  The last group has 10 position entries instead.
+Note the duplicate entries in this table.  Multiple sprites are reused for different biker positions so there will be several duplicate images for many groups.
 
-Positions for the bikers are organized from left to right like this:
+Biker positions are organized from left to right like this:
 
 
-0 |1 |2 |3 |4 |5|6 |7 |8 |9 |A
+Row 1 |Row 2 |Row 3 |Row 4 |Row 5 |Row 6|Row 7 |Row 8 |Row 9 |Row 10 |Row 11
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-L5|L4|L3|L2|L1|C|R1|R2|R3|R4|R5
+L5|L4|L3|L2|L1|CP|R1|R2|R3|R4|R5
 
-If we start with number 0, center will always be position 5.
+Row 6 will always be Center Position.
 
-It's possible that L5 and R5 are not used but it helps to think that both left and right directions can have 5 possible different sprites assigned.
+The smaller the number, the closer that bike is to Center so L1 is left-center, L2 is more towards the left, etc.
 
-For example, the first group contains the biker sprites that are closest to the player (with the bikers getting farther away from the player with each successive group). The first 20 groups appear to have their sprites organized like this:
+I believe that there are no groups that use 5 unique sprites for either direction, but it helps to think that both left and right directions can have 5 possible different sprites assigned.
 
-0 |1 |2 |3 |4 |5|6 |7 |8 |9 |A
+For example, the first group contains the biker sprites that are closest to the player (with the bikers getting farther away from the player with each successive "scale group"). The first 20 groups appear to have their sprites organized like this:
+
+Row 1 |Row 2 |Row 3 |Row 4 |Row 5 |Row 6|Row 7 |Row 8 |Row 9 |Row 10 |Row 11
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-L2|L2|L2|L2|L1|C|R1|R2|R2|R2|R2
+L2|L2|L2|L2|L1|CP|R1|R2|R2|R2|R2
 
-Scale groups 00 to 05 reuse the same BIKE_00_L2 and BIKE_00_R2 sprites. 
+To give these sprites a name, we'll follow a naming scheme:  BIKE_GroupNumber_Position
 
-There are at least 38 scale levels. Group 39 appears to be different from the rest with 10 positions instead of 11, so we'll ignore that one for now.
+Scale groups 00 to 05 reuse the same BIKE_00_L2 and BIKE_00_R2 sprites for multiple rows/positions. 
+
+### "VERT" Group (vertical Biker scaling)
+
+There are 38 scale groups that use the left-to-right positions. The last group is different and is used for vertical sprites (when bikers are perpendicular to the player's point-of-view).  Instead of 11 rows for positioning from left-to-right, there are 10 rows that are used for scale levels (starting from closest to farthest).
+
+16-bit address|Image Page|Width|Height|two Screen Position bytes?|Biker Sprite Name
+| --- | --- | --- | --- | --- | --- |
+2975|07|0E|4C|0D 18|BIKE_VERT_0
+4161|07|0D|48|0C 17|BIKE_VERT_1
+5BAF|07|0B|3D|0A 13|BIKE_VERT_2
+7DD1|07|0A|31|08 0F|BIKE_VERT_3
+2CF6|08|08|26|07 0C|BIKE_VERT_4
+3F09|08|07|20|05 0A|BIKE_VERT_5
+4883|08|06|1C|05 08|BIKE_VERT_6
+53E9|08|05|16|03 06|BIKE_VERT_7
+7F8F|05|04|0E|02 04|BIKE_VERT_8
+5E27|08|02|03|00 00|BIKE_VERT_9
+
 
 ```
 ROM_31.U15 ($33CA-$3F7D)
