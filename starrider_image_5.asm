@@ -1,8 +1,8 @@
-; Star Rider Images (Page 4)
+; Star Rider Images (Page 5)
 ; Rewritten by SynaMax, started March 3rd, 2024
 
 ;
-; To build the image roms 9 & 10, type in the following:
+; To build the image roms 11 & 12, type in the following:
 ;
 ;	asl starrider_image_5.asm -o sr_img5.p
 ;
