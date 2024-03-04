@@ -98,12 +98,11 @@ ROBOFFICIAL sprite table
 81 01 00 78 3F = ??? (some sort of debug guide???)
 ```
 
-![joust_starrider](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/3e500708-6b5c-4503-84b1-e2d90e4aa693)
+<img src="pictures/joust_starrider.gif">
 
 This Joust Ostrich sprite shows up as an easter egg at the very end of Stalactia right before the finish line at the Comsodrome.
 
-![sinistar_5x](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a7fbd416-4c78-43b7-be7e-27c10c8e2d73)
-
+<img src="pictures/sinistar_5x.png">
 And this Sinistar sprite shows up in the middle of the Milky Way racetrack.  Both easter eggs pop up at the top left corner of the screen.
 
 With this table, we're able to reconstruct the source code to build the first two Image ROMs.  [Click this text to view the code!](starrider_image_0.asm)
@@ -124,27 +123,15 @@ In the recreated source code, group numbers are hexadecimal.
 
 Group $00 (duplicate table positions not shown):
 
-![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
-![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
-![biker_00_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/e7f7fcce-a82d-4c21-86fc-622dff7246d8)
-![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
-![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
+BIKE_00_L2|BIKE_00_L1|BIKE_00_CP|BIKE_00_R1|BIKE_00_R2
+| --- | --- | --- | --- | --- |
+<img src="pictures/BIKE_00_L2.png">|<img src="pictures/BIKE_00_L1.png">|<img src="pictures/BIKE_00_CP.png">|<img src="pictures/BIKE_00_R1.png">|<img src="pictures/BIKE_00_R2.png">
 
-Group $01 (duplicate table positions not shown):
+Group $06 (duplicate table positions not shown):
 
-![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
-![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
-![biker_01_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/1be5f1b0-ef00-413d-b81a-ac6523252223)
-![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
-![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
-
-Group $02 (duplicate table positions not shown):
-
-![biker_00_1](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/5df58db7-6d83-4d7c-a816-0a7f3c317180)
-![biker_00_2](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/a96b467e-30fb-415e-93ee-8c912e04a774)
-![biker_02_3](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/63746177-b4da-418e-8abd-6c1a4089719d)
-![biker_00_4](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/6ddebb1c-135a-4182-ba0d-c72bc1cd1d02)
-![biker_00_5](https://github.com/synamaxmusic/star-rider-notes/assets/11140222/b639dbc6-ab64-4947-9891-7b3cc7200dba)
+BIKE_06_L2|BIKE_06_L1|BIKE_06_CP|BIKE_06_R1|BIKE_06_R2
+| --- | --- | --- | --- | --- |
+<img src="pictures/BIKE_06_L2.png">|<img src="pictures/BIKE_06_L1.png">|<img src="pictures/BIKE_06_CP.png">|<img src="pictures/BIKE_06_R1.png">|<img src="pictures/BIKE_06_R2.png">
 
 ### Groups $00-$25 (11 horizontal Biker positions)
 
