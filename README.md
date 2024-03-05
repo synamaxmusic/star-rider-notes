@@ -45,8 +45,11 @@ U46|0xC000-0xFFFF|N/A (text fonts)
 
 Here's a table of sprite definitions for the first two image roms.  This table can be found at $1BC0 in ROM_34.U45.  $1BC0 equates to $9BC0 in RAM.
 
-Table format is as follows:
-(Width, Height, Image Page 0, 16-bit Address)
+Table format is as follows (first Robofficial sprite used as reference):
+
+Width|Height|Image Page 0|16-bit Address
+| --- | --- | --- | --- |
+12|24|00|002F 
 
 ```
 ROBOFFICIAL sprite table 
@@ -77,21 +80,21 @@ ROBOFFICIAL sprite table
 1E 10 00 4A AA 
 33 0C 00 4C 8A = 5 4 3 2 1 countdown lights
 30 11 00 4E EE = COSMODROME
-30 11 00 52 1E = CLIMAXONIA
+30 11 00 52 1E = CLIMAXONIA (unused?)
 30 11 00 55 4E = METROPOLIA
 30 11 00 58 7E = HEXAGONIA
-30 11 00 5B AE = SPHERODONIA
+30 11 00 5B AE = SPHERODONIA (unused?)
 30 11 00 5E DE = STALACTIA
 30 11 00 62 0E = MILKY WAY
 30 11 00 65 3E = TITANIA
 30 11 00 68 6E = CUBITANIA
 30 11 00 6B 9E = CRYSTALIA
 30 11 00 6E CE = FINISH
-10 07 00 71 FE = BONUS
-10 07 00 72 6E = TURN
-10 07 00 72 DE = PASS
-10 07 00 73 4E = START
-10 07 00 73 BE = BLOCK
+10 07 00 71 FE = BONUS_OFF
+10 07 00 72 6E = BONUS_TURN
+10 07 00 72 DE = BONUS_PASS
+10 07 00 73 4E = BONUS_START
+10 07 00 73 BE = BONUS_BLOCK
 09 0D 00 74 2E = JOUST EASTER EGG
 09 0D 00 74 A3 = JOUST EASTER EGG (2nd Frame)
 13 28 00 75 18 = SINISTAR
@@ -111,11 +114,11 @@ With this table, we're able to reconstruct the source code to build the first tw
 
 ## Biker images
 
-There is a giant table located in ROM_31.U15 at address range $33CA-$3F7D that defines all the biker sprites and what groups they belong to.
+There are several tables in the game code, but the largest one is located in ROM_31.U15 at address range $33CA-$3F7D that defines all the forward-facing biker sprites and what groups they belong to.
 
-This table is very important as all the different biker sprites are haphazardly scattered throughout the image roms so following this will help us figure out which positions and scaling (or level-of-detail) these bikers belong to.
+This table is very important as all the different biker sprites are stored in the image roms from largest to smallest, effectively scattering them across 17 separate eeproms. Following this table will help us figure out which positions and scaling (or level-of-detail) these bikers belong to.
 
-The table also has the width and height for each sprite.  With the large biker sprites, it's pretty easy to figure out the image's dimensions without referring to this table, but as the sprite get smaller and smaller it gets extremely difficult to determine the true size of the sprite.  The smallest biker sprite I've found so far is 2 x 3 pixels!
+The table also has the width and height for each sprite.  With the large biker sprites, it's pretty easy to figure out the image's dimensions without referring to this data, but as the sprite get smaller and smaller it gets extremely difficult to determine the true size of the sprite.  The smallest biker sprite I've found so far is 2 x 2 pixels!
 
 The entire table has 39 "scale groups".  With the exception of the last group, there are 11 different rows or "positions" for each group.  The last group has 10 position entries instead.  Each row has 7 bytes.  
 
