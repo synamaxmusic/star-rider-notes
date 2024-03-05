@@ -138,7 +138,7 @@ BIKE_06_L2|BIKE_06_L1|BIKE_06_CP|BIKE_06_R1|BIKE_06_R2
 
 ### Groups $00-$25 (11 horizontal Biker positions)
 
-A row for each group contains 7 bytes.  The table structure looks like this (Group 00 used as an example...Biker Position and Biker Sprite Name are not in the table data and are for reference only):
+A row for each group contains 7 bytes.  The table structure looks like this (Group 00 used as an example..."Biker Position" and "Biker Sprite Name" columns are for reference only):
 
 16-bit address|Image Page|Width|Height|two Screen Position bytes?|Biker Position|Biker Sprite Name
 | --- | --- | --- | --- | --- | --- | --- |
