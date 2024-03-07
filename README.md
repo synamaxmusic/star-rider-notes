@@ -37,7 +37,7 @@ U26|0x4000-0x7FFF|7
 U12|0x0000-0x3FFF|8
 U27|0x4000-0x7FFF|8
 U13|0x0000-0x3FFF|9
-U46|0xC000-0xFFFF|N/A (text fonts)
+U46|0xC000-0xFFFF|N/A (text fonts and extra sprites)
 
 ----
 
@@ -98,7 +98,7 @@ ROBOFFICIAL sprite table
 09 0D 00 74 2E = JOUST EASTER EGG
 09 0D 00 74 A3 = JOUST EASTER EGG (2nd Frame)
 13 28 00 75 18 = SINISTAR
-81 01 00 78 3F = ??? (some sort of debug guide???)
+81 01 00 78 3F = (I think this is the graph used for the Steering Switch Test in diagnostics)
 ```
 
 <img src="pictures/joust_starrider.gif">
