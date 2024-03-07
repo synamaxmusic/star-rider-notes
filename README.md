@@ -805,9 +805,23 @@ There's another jet exhaust sprite at $13FC that has no flames, it's quite possi
 15 9E 09 0E 0B 0D 0A
 ```
 
-## U13 (Image Page 9) sprite definitions
+## U13 (Image Page 9) sprite definitions for Explosion particles
 
-Yet another sprite table found in ROM_34.U45 at address $18E2.  This is for some but not all sprites in ROM_19.U13 (Image Page 9).  Each sprite is defined in 6 bytes.  Explosion particle effects are found here.  I don't recognize the sprites starting at $196C-$2148.  $2149 is one of the larger explosion fireball sprites...the one at $2062 might be unused.
+Yet another sprite table found in ROM_34.U45 at address $18E2, this is used for the explosion particle effects found in in ROM_19.U13 (Image Page 9).  Each sprite is defined in 6 bytes.  A fireball sprite at $2062 seems to be unused.
+
+The biker explosion particle effects are split up into two different types: a "fireball" animation and a jagged "shrapnel" animation (it could also be a "spark").
+
+Even though they are referenced in ROM_34.U45 at address $18E2, the shrapnel sprites at $196C-$2148 don't appear in normal gameplay.
+
+They do show up in rare early footage for Star Rider and as seen in the video, the sprites color-cycle to "flip-flop" between frames.
+
+https://www.youtube.com/watch?v=s2ZSCQockuU&t=903s
+
+https://www.youtube.com/watch?v=s2ZSCQockuU&t=859s
+
+https://www.youtube.com/watch?v=s2ZSCQockuU&t=886s
+
+The animation of the fireball sprites are different as well.  In the final game, they start falling down as they get smaller, but in this footage they just expand and fly to the top and upper-sides of the screen before disappearing.
 
 ```
 1F 9C 0B 12 0A 08 
