@@ -1,5 +1,5 @@
 ;asl star_rider_phrases.asm -o star_rider_phrases.p
-;p2bin star_rider_phrases.p star_rider_phrases.bin
+;p2bin star_rider_phrases.p star_rider_phrases.bin -r $4000-$7FFF
 
 	CPU	6809
 
@@ -139,6 +139,15 @@ TXRESM	EQU	$0D	;'HIGH SCORE TABLE RESET'
 	CHARSET '.',$2E
 	
 ;; These are new for Star Rider	
+
+;**** OFFSETS FOR LARGE FONT SPECIAL ****
+	CHARSET '/',$2F
+	CHARSET '&',$30
+	CHARSET '"',$31
+	CHARSET ':',$32
+	CHARSET '_',$33
+;CCNARW	EQU	$34
+
 
 	CHARSET '\58',$32	;;Colon
 	
@@ -959,13 +968,19 @@ _L9
 	FDB	NULL
 
 ;;==============================================================================
-;	
-; Phrases	
+;
+;	PPPP   H   H  RRRR    AAA    SSSS  EEEEE   SSSS	
+;	P   P  H   H  R   R  A   A  S      E      S    	
+;	PPPP   HHHHH  RRRR   AAAAA   SSS   EEEE    SSS 
+;	P      H   H  R   R  A   A      S  E          S
+;	P      H   H  R   R  A   A  SSSS   EEEEE  SSSS 
 ;
 	
 ;	ORG	6314
 
 	RADIX	10
+	
+	CODEPAGE WILLIASCII
 	
 	FCC	"I AM THE ROBOFFICIAL"
 	RORG 	-1
@@ -1070,3 +1085,304 @@ _L9
 	FCC	"FOR MORE ACCELERATION POWER."
 	RORG 	-1
 	FCB 	CPER+CEND
+	
+	FCC	"ON LEFT HANDLE:"		;;Displays with next four phrases
+	RORG 	-1
+	FCB 	CCOLN+CEND
+	
+	FCC	"PRESS TURBO IN FRONT"
+	RORG 	-1
+	FCB 	CT+CEND
+	
+	FCC	"FOR MAXIMUM SPEED."
+	RORG 	-1
+	FCB 	CPER+CEND
+
+	FCC	"SQUEEZE BACK BUTTON"
+	RORG 	-1
+	FCB 	CN+CEND
+
+	FCC	"TO BRAKE."
+	RORG 	-1
+	FCB 	CPER+CEND
+
+	FCC	"YOU MUST ALWAYS WIN"
+	RORG 	-1
+	FCB 	CN+CEND
+
+	FCC	"TO AVOID ENTRY FEES."
+	RORG 	-1
+	FCB 	CPER+CEND
+	
+	FCC	"IF YOU WIN"
+	RORG 	-1
+	FCB 	CN+CEND
+
+	FCC	"YOU ARE A STAR RIDER!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+
+	FCC	"ANOTHER MORTAL"
+	RORG 	-1
+	FCB 	CL+CEND
+
+	FCC	"OVER & OUT"				;used alongside "I AM THE ROBOFFICIAL"
+	RORG 	-1
+	FCB 	CT+CEND
+	
+	FCC	"THE RACE IS OVER, YOU WERE LAST."	;this displays with comma correctly when next line starts: https://youtu.be/ecVcA3l6v3E?feature=shared&t=379
+	RORG 	-1
+	FCB 	CPER+CEND
+	
+	FCC	"I WAS READY TO BET MY HALF"
+	RORG 	-1
+	FCB 	CF+CEND
+
+	FCC	"OF THE UNIVERSE ON YOU!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+
+	FCC	"COME ON,"
+	RORG 	-1
+	FCB 	CCMMA+CEND
+	
+	FCC	"YOU CAN DO BETTER THAN THAT!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+	
+	FCC	"BIG CITY TOO MUCH FOR YOU?"
+	RORG 	-1
+	FCB 	CQUE+CEND
+
+	FCC	"SPACE BUMPKIN?"
+	RORG 	-1
+	FCB 	CQUE+CEND
+
+	FCC	"HM..."
+	RORG 	-1
+	FCB 	CPER+CEND
+
+	FCC	"IT TOOK A TITAN TO BEAT YOU."
+	RORG 	-1
+	FCB 	CPER+CEND
+	
+	FCC	"IF YOU CHOOSE, YOU MAY"
+	RORG 	-1
+	FCB 	CY+CEND
+
+	FCC	"RE-RACE THIS PLANET-"
+	RORG 	-1
+	FCB 	CDASH+CEND
+
+	FCC	"YOU CAME IN SECOND."
+	RORG 	-1
+	FCB 	CPER+CEND
+
+	FCC	"YOU MAY CHOOSE"
+	RORG 	-1
+	FCB 	CE+CEND
+
+	FCC	"TO RACE THE NEXT PLANET-"
+	RORG 	-1
+	FCB 	CDASH+CEND
+
+	FCC	"YOU'RE WINNING THE FANS"
+	RORG 	-1
+	FCB 	CS+CEND
+
+	FCC	"IN THE COSMODROME."
+	RORG 	-1
+	FCB 	CPER+CEND
+	
+	FCC	"ACE STAR RIDER!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+	
+	FCC	"ALL RIGHT!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+
+	FCC	"YOU BEAT THE TITANS."
+	RORG 	-1
+	FCB 	CPER+CEND
+	
+	FCC	" NEXT RACE FINISH  1 2 3 4 5 "		;;{AS} won't change "2" from $32 to $02
+	RORG 	-1
+	FCB 	CSPC+CEND
+;; {AS} is stupid and won't change the "2" in the string to
+;; the correct byte so we're forcing it instead.
+PHRFIX	SET	*					;;Let's mark where we're leaving off
+	RORG	-8					;;Go back 8 bytes
+	FCB	$02					;; Overwrite $32 with $02
+
+	ORG	PHRFIX					;;Go back to where we left off.
+;; Leave this here until this bug is fixed.
+
+	FCC	" WELCOME STAR RIDER"
+	RORG 	-1
+	FCB 	CR+CEND
+
+	FCC	"GET READY"
+	RORG 	-1
+	FCB 	CY+CEND
+
+	FCC	"LAST"
+	RORG 	-1
+	FCB 	CT+CEND
+
+	FCC	"FOR THE RIDE OF YOUR LIFE"
+	RORG 	-1
+	FCB 	CE+CEND
+
+	FCC	"IGNITION START COUNTDOWN"
+	RORG 	-1
+	FCB 	CN+CEND
+
+	FCC	"YOU CAME IN  1 2 3 4 5 "
+	RORG 	-1
+	FCB 	CSPC+CEND
+;; {AS} is stupid and won't change the "2" in the string to
+;; the correct byte so we're forcing it instead.
+PHRFIX	SET	*					;;Let's mark where we're leaving off
+	RORG	-8					;;Go back 8 bytes
+	FCB	$02					;; Overwrite $32 with $02
+
+	ORG	PHRFIX					;;Go back to where we left off.
+;; Leave this here until this bug is fixed.
+
+	FCC	"CONGRATULATIONS STAR RIDER"
+	RORG 	-1
+	FCB 	CR+CEND
+
+	FCC	"YOU CONQUERED CUBITANIA!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+	
+	FCC	"CANT HANDLE A FEW OBSTACLES"
+	RORG 	-1
+	FCB 	CS+CEND
+
+	FCC	"EH? "					;;"Beauty, eh?"
+	RORG 	-1
+	FCB 	CSPC+CEND
+
+	FCC	"I THINK YOU HAVE THE RIGHT STUFF!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+	
+	FCC	"GET A HORSE "
+	RORG 	-1
+	FCB 	CSPC+CEND
+
+	FCC	"I SALUTE YOU,"
+	RORG 	-1
+	FCB 	CCMMA+CEND
+
+	FCC	"YOU ARE BOUND FOR THE STARS."
+	RORG 	-1
+	FCB 	CPER+CEND
+
+	FCC	"YOU SEEMED UNBEATABLE"
+	RORG 	-1
+	FCB 	CE+CEND
+
+	FCC	"WHAT HAPPENED?"
+	RORG 	-1
+	FCB 	CQUE+CEND
+
+	FCC	"ARE YOU AFRAID OF DARK CAVES?"
+	RORG 	-1
+	FCB 	CQUE+CEND
+	
+	FCC	"EXCELLENT! "
+	RORG 	-1
+	FCB 	CSPC+CEND
+
+	FCC	"I DIDN'T THINK A MORTAL"
+	RORG 	-1
+	FCB 	CL+CEND
+
+	FCC	"WOULD SURVIVE STALACTIA."
+	RORG 	-1
+	FCB 	CPER+CEND
+
+	FCC	"NICE TRY---  CUBEHEAD!"
+	RORG 	-1
+	FCB 	CEXC+CEND
+	
+	FCC	"THE SUPREME POWERS GRANT YOU"
+	RORG 	-1
+	FCB 	CU+CEND
+	
+	FCC	"THE RIGHT TO BUY IN "
+	RORG 	-1
+	FCB 	CSPC+CEND
+
+	FCC	" 5 4 3 2 1 0 "
+	RORG 	-1
+	FCB 	CSPC+CEND
+;; {AS} is stupid and won't change the "2" in the string to
+;; the correct byte so we're forcing it instead.
+PHRFIX	SET	*					;;Let's mark where we're leaving off
+	RORG	-6					;;Go back 6 bytes
+	FCB	$02					;; Overwrite $32 with $02
+
+	ORG	PHRFIX					;;Go back to where we left off.
+;; Leave this here until this bug is fixed.
+
+	FCC	"BLAST OFF"
+	RORG 	-1
+	FCB 	CF+CEND
+	
+	FCC	"CREDITS: "
+	RORG 	-1
+	FCB 	CSPC+CEND
+
+	FCC	"SCORE"
+	RORG 	-1
+	FCB 	CE+CEND
+
+	FCC	"STAR RIDERS"
+	RORG 	-1
+	FCB 	CS+CEND
+
+	FCC	"GAME OVER"
+	RORG 	-1
+	FCB 	CR+CEND
+
+;;==============================================================================	
+;;
+;;  DIAGNOSTIC PHRASES
+;;
+
+	FCC	"CUSTOM I.C. FAULT - "
+	RORG 	-1
+	FCB 	CSPC+CEND
+	
+	FCC	"DISC FAULT - "
+	RORG 	-1
+	FCB 	CSPC+CEND
+	
+	FCC	" SOUND BOARD FAULT"
+	RORG 	-1
+	FCB 	CT+CEND
+	
+	FCC	"NOTIFY OPERATOR"
+	RORG 	-1
+	FCB 	CR+CEND
+	
+	FCC	"TO PERFORM MAINTENANCE"
+	RORG 	-1
+	FCB 	CE+CEND
+	
+	FCC	"TESTING"
+	RORG 	-1
+	FCB 	CG+CEND
+	
+	FCC	"INITIAL TESTS INDICATE"
+	RORG 	-1
+	FCB 	CE+CEND
+	
+	FCC	"ALL SYSTEMS GO"
+	RORG 	-1
+	FCB 	CO+CEND
