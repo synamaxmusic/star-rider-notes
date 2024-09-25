@@ -895,7 +895,11 @@ Frame # (Hex)|Frame # (Decimal)|Marker
 5B2B|23339|Stalactia
 6B6B|27499|Metropolia
 
-Another table can be found in the same rom file at address $65B.  This one appears to have the start and finish frames for game logic:
+Another table can be found in the same rom file at address $65B.  This one appears to have the start and finish frames for game logic.  
+
+A pattern also emerges as each race track uses three frame markers.  The first one is for the start of the race, the second is used when the player crosses the finish line and the last marker is used to pause the footage after the bikers roll through the Cosmodrome, right before the game cues up the countdown for the next race.  Once the countdown is done, we move on to the starting frame for the next racetrack (note the third frame and the first frame for the next track share the same value).
+
+Again, we can see how the start of every race begins with a frame number ending in 9, but now we can also see every race finish occurs on a frame ending in 1:
 
 Frame # (Hex)|Frame # (Decimal)|Marker
 | --- | --- | --- |
