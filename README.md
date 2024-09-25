@@ -876,3 +876,47 @@ The animation of the fireball sprites are different as well.  In the final game,
 24 A6 16 2C 15 15
 ```
 
+## Track start frame table
+
+Thanks to Joseba Epalza for figuring out the laserdisk frame numbers for the start of the racetracks.
+
+These numbers can be found at address $3DBA in rom_32.u26.  Curiously, all the racetrack frame numbers end in 9.
+
+Frame # (Hex)|Frame # (Decimal)|Marker
+| --- | --- | --- |
+0003|3|Start of laserdisc test card
+0044|68|Attract mode start
+0EFF|3839|Cosmodrome start
+0F63|3939|Cubitania
+1FA3|8099|Hexagonia
+2FE3|12559|Crystalia
+3E2F|15919|Milky Way
+4CAD|19629|Titania
+5B2B|23339|Stalactia
+6B6B|27499|Metropolia
+
+Another table can be found in the same rom file at address $65B.  This one appears to have the start and finish frames for game logic:
+
+Frame # (Hex)|Frame # (Decimal)|Marker
+| --- | --- | --- |
+0F63|3939|Cubitania (Start)
+1EDD|7901|Cubitania (Race Finish, continue playing video)
+1FA3|8099|Cosmodrome arrival (Pause video here for countdown)
+1FA3|8099|Hexagonia (Start)
+2F1D|12061|Hexagonia (Finish)
+2FE3|12559|Cosmodrome arrival (Pause)
+2FE3|12559|Crystalia (Start)
+3D69|15721|Crystalia (Finish)
+3E2F|15919|Cosmodrome arrival (Pause)
+3E2F|15919|Milky Way (Start)
+4BE7|19431|Milky Way (Finish)
+4CAD|19629|Cosmodrome arrival (Pause)
+4CAD|19629|Titania (Start)
+5A65|23141|Titania (Finish)
+5B2B|23339|Cosmodrome arrival (Pause)
+5B2B|23339|Stalactia (Start)
+6AA5|27301|Stalactia (Finish)
+6B6B|27499|Cosmodrome arrival (Pause)
+6B6B|27499|Metropolia (Start)
+7AE5|31461|Metropolia (Finish)
+7BAB|31659|Last Cosmodrome departure (Pause)
