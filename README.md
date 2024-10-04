@@ -945,7 +945,10 @@ $A039 | Frame marker #3 (Cosmodrome arrival) | 2
 ||
 $A111 | Gameplay Flag (0 = Attract mode or High Score Entry) | 1
 ||
-$A1CD | Score (Last 4 BCD digits) | 2
+$A1CB | Current Score (HIGH 4 BCD digits) | 2
+$A1CD | Current Score (LOW 4 BCD digits) | 2
+$A1CF | High Score (HIGH 4 BCD digits) (saves at every finish-line) | 2
+$A1D1 | High Score (LOW 4 BCD digits) (saves at every finish-line) | 2
 ||
 $A1D8 | Player Race Position (1 = 1st Place, 5 = Last Place) | 1
 ||
