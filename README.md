@@ -1,14 +1,18 @@
 # star-rider-notes
-Reverse engineering notes about the 1983 laserdisc arcade game, "Star Rider"
+Reverse engineering notes about the 1983 laserdisc arcade game, "Star Rider", compiled by SynaMax
 
-Thanks to Matt O. for his work on reverse engineering the game so far.  
+Thanks to Matt O. for his work on reverse engineering the game so far.
 
 You can check out his documentation here:
 https://www.daphne-emu.com:9443/mediawiki/index.php/StarRiderMainCpu
 
-His notes have proven to be extremely helpful with these new findings.
+His notes on the game's hardware and his disassemblies of the main program and PIF ROM have proven to be extremely helpful with these new findings.
 
-Shout out to Sean Riddle as well for his very useful [Williams GFX Ripper](http://www.seanriddle.com/ripper.html) program, which allows me to view these sprites outside of the game (albeit with incorrect colors).  Star Rider uses 16-bit colors, whereas earlier Williams game use just 8-bit color palettes.  The only Star Rider sprite that appears to display correctly with this program is the Sinistar easter egg since it uses the same color palette from the original game.
+Shout out to Sean Riddle as well for his very useful [Williams GFX Ripper](http://www.seanriddle.com/ripper.html) program, which allows me to view these sprites outside of the game (albeit with incorrect colors).  Star Rider uses 16-bit colors, whereas earlier Williams game use just 8-bit color palettes.
+
+Special thanks to Joseba for his Star Rider emulator, it's allowed me to finally look at the game's RAM contents to map out the memory, as well as make some mods.  Thanks to my RE work on Sinistar and Joust, I recognized that Star Rider's game engine has a lot of similarities.  Just for fun, I changed the phrase for "I Grant You Another Life" with the Spanish translation.
+
+<img src="pictures/STAR_RIDER_MOD.png">
 
 ----
 
@@ -101,6 +105,10 @@ ROBOFFICIAL sprite table
 81 01 00 78 3F = (I think this is the graph used for the Steering Switch Test in diagnostics)
 ```
 
+With this table, we're able to reconstruct the source code to build the first two Image ROMs.  [Click this text to view the code!](starrider_image_0.asm)
+
+### Joust and Sinistar Easter Eggs
+
 <img src="pictures/joust_starrider.gif">
 
 This Joust Ostrich sprite shows up as an easter egg at the very end of Stalactia right before the finish line at the Comsodrome.
@@ -108,7 +116,9 @@ This Joust Ostrich sprite shows up as an easter egg at the very end of Stalactia
 <img src="pictures/sinistar_5x.png">
 And this Sinistar sprite shows up in the middle of the Milky Way racetrack.  Both easter eggs pop up at the top left corner of the screen.
 
-With this table, we're able to reconstruct the source code to build the first two Image ROMs.  [Click this text to view the code!](starrider_image_0.asm)
+The picture above was taken with Sean Riddle's Williams GFX ripper but using the 8-bit color palette from Sinistar.  Star Rider uses 16-bit colors (RGB and Luma) and I made some fixes for Joseba's emulator that fixes the color palette to allow luma to work.  It's still not perfect (the colors appear to be more darker and bluer on real hardware) but this is waaaaay better than before.
+
+<img src="pictures/sinistar star rider accurate colors.png">
 
 ----
 
@@ -924,3 +934,30 @@ Frame # (Hex)|Frame # (Decimal)|Marker
 6B6B|27499|Metropolia (Start)
 7AE5|31461|Metropolia (Finish)
 7BAB|31659|Last Cosmodrome departure (Pause)
+
+## RAM Memory Map
+
+Address|Description|Size
+| --- | --- | --- |
+$A035 | Frame marker #1 (Race Start) | 2
+$A037 | Frame marker #2 (Race Finish) | 2
+$A039 | Frame marker #3 (Cosmodrome arrival) | 2
+||
+$A111 | Gameplay Flag (0 = Attract mode or High Score Entry) | 1
+||
+$A1CD | Score (Last 4 BCD digits) | 2
+||
+$A1D8 | Player Race Position (1 = 1st Place, 5 = Last Place) | 1
+||
+$A1E5 | Control Panel Enable or Race Start Flag? | 1
+||
+$A1E9 | Current Race Number | 2
+$A1EA | Number of Races Won | 1
+||
+$A1ED | Mentioned in Robo routine, but doesn't do anything | 1
+$A1EE | "I grant you another life" Active Flag | 1
+$A1EF | "I grant you another life" Don't Repeat Flag | 1
+||
+$A1F3 | ??? | 1
+$A1F4 | Current Robofficial Phrase Text Starting X-Position? | 1
+$A1F5 | Current Robofficial Phrase Test Pointer | 2
