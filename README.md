@@ -988,6 +988,10 @@ $A1F2 | ??? | 1
 $A1F3 | ??? | 1
 $A1F4 | Current Robofficial Phrase Text Starting X-Position? | 1
 $A1F5 | Current Robofficial Phrase Test Pointer | 2
+||
+$A218 | Array of sound IDs (highest to lowest priority?) (02, 09, 0A) | 1
+$A219 | Sound ID (typewriter?) | 1
+$A21A | Sound ID (Robofficial sounds) | 1
 
 ## Sound IDs
 
@@ -1015,3 +1019,13 @@ The sound descriptions (and which "sound line" number they belong to) are from t
 * 0C = typerwriter
 * 0D = Robofficial ding
 * 09 = Robofficial fade out?
+
+```
+4238: 34 06           PSHS      D
+423A: BD 40 9B        JSR       $409B
+423D: 86 3C           LDA       #$3C
+423F: B7 A2 13        STA       $A213
+4242: CC 01 0A        LDD       #$010A          ; 0A is our high score sfx (maybe 01 is a flag for playback or priority?)
+4245: FD A2 17        STD       $A217           ; store the sound ID in the sound array
+4248: 35 86           PULS      PC,D            ; restore PC and D (return to previous routine)
+```
