@@ -1020,6 +1020,8 @@ The sound descriptions (and which "sound line" number they belong to) are from t
 * 0D = Robofficial ding
 * 09 = Robofficial fade out?
 
+Here is the code that triggers the high score revving sound.
+
 ```
 4238: 34 06           PSHS      D
 423A: BD 40 9B        JSR       $409B
@@ -1029,3 +1031,4 @@ The sound descriptions (and which "sound line" number they belong to) are from t
 4245: FD A2 17        STD       $A217           ; store the sound ID in the sound array
 4248: 35 86           PULS      PC,D            ; restore PC and D (return to previous routine)
 ```
+The $010A is some sort of flag and the sound ID.  The 0A is what gets sent to the sound board, while the 01 is cleared immediately after it's written to $A217 (probably to denote that the sound is playing).
