@@ -961,6 +961,35 @@ $A1ED | Mentioned in Robo routine, but doesn't do anything | 1
 $A1EE | "I grant you another life" Active Flag | 1
 $A1EF | "I grant you another life" Don't Repeat Flag | 1
 ||
+$A1F0 | Something Robofficial related | 2
+$A1F2 | ??? | 1
 $A1F3 | ??? | 1
 $A1F4 | Current Robofficial Phrase Text Starting X-Position? | 1
 $A1F5 | Current Robofficial Phrase Test Pointer | 2
+
+## Sound IDs
+
+There are two sets of sound IDs that can be seen at address $C982.  The first set is used exclusively for playing back sounds during diagnostics and the second set of sounds IDs are used during gameplay.
+
+### Sound Test IDs
+
+The sound descriptions (and which "sound line" number they belong to) are from the Star Rider manual.
+
+* 1 = FE (rising swept-tone)
+* 2 = FD (typewriter)
+* 3 = FB (high-pitched ping)
+* 4 = F7 (carriage return)
+* 5 = EF (crash or explosion)
+* 6 = DF (high-pitched peep)
+* 7 = BF (turbo whoosh)
+* 8 = 7F (coin sound: siren)
+
+### Gameplay Sound IDs
+
+* 01 = Silence?
+* 02 = Explosion
+* 17 = Coin sound
+* 0E = whoosh?
+* 0C = typerwriter
+* 0D = Robofficial ding
+* 09 = Robofficial fade out?
