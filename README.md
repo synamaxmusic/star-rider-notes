@@ -947,12 +947,16 @@ $A111 | Gameplay Flag (0 = Attract mode or High Score Entry) | 1
 ||
 $A1CB | Current Score (HIGH 4 BCD digits) | 2
 $A1CD | Current Score (LOW 4 BCD digits) | 2
-$A1CF | High Score (HIGH 4 BCD digits) (saves at every finish-line) | 2
-$A1D1 | High Score (LOW 4 BCD digits) (saves at every finish-line) | 2
+$A1CF | Current High Score (HIGH 4 BCD digits) (saves at every finish-line) | 2
+$A1D1 | Current High Score (LOW 4 BCD digits) (saves at every finish-line) | 2
 ||
+$A1D5 | Control Panel Enable or Race Active Flag? (On during race) | 1
+$A1D6 | Player Speed (4 BCD digits) | 2
 $A1D8 | Player Race Position (1 = 1st Place, 5 = Last Place) | 1
+$A1D9 | Overtake flag? (value = 2 when driving pass biker) | 1
 ||
-$A1E5 | Control Panel Enable or Race Start Flag? | 1
+$A1E5 | Game Over Flag? (Off during race, 5 during game over) | 1
+$A1E6 | Number of Bikers at Finishline | 1 
 ||
 $A1E9 | Current Race Number | 2
 $A1EA | Number of Races Won | 1
