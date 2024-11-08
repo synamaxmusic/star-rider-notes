@@ -943,20 +943,38 @@ $A035 | Frame marker #1 (Race Start) | 2
 $A037 | Frame marker #2 (Race Finish) | 2
 $A039 | Frame marker #3 (Cosmodrome arrival) | 2
 ||
-$A111 | Gameplay Flag (0 = Attract mode or High Score Entry) | 1
+$A102 | ??? (Always $F195) | 2
+$A104 | Something explosion related | 1
+$A105 | ??? (1 = race start, 3 = high score after race) | 1
+$A106 | 16-bit Steering position (also player start too??) (F000 = Center, C000 = Left, E000 = Right) | 2
+$A108 | ??? (Always $C000) | 2
+$A10A | Throttle (F0 = Center, C0 = Stop, F8 = Full Throttle, B0 = Turbo, B8 = Turbo/Full, 80 = Turbo/Stop) | 1
+$A10B | Throttle (fractional byte; left nibble is stop, right nibble is full) | 1
+$A10C | ??? (Always $30) | 1
+$A10D | ??? (left nibble flashes when pulling on throttle) | 1
+$A10E | Gameplay or High Score flag (4 = intro "Get Ready", 2 = racing, 0A = High Score Entry) | 1
+$A10F | 16-bit Gameplay Time? (Counts up during gameplay) | 2
+$A111 | Gameplay Timer Enable Flag? (0 = Attract mode or High Score Entry) | 1
+||
+$A115 | Coin Slot Bit Mask (08, 10, 20) | 1
 ||
 $A1CB | Current Score (HIGH 4 BCD digits) | 2
 $A1CD | Current Score (LOW 4 BCD digits) | 2
 $A1CF | Current High Score (HIGH 4 BCD digits) (saves at every finish-line) | 2
 $A1D1 | Current High Score (LOW 4 BCD digits) (saves at every finish-line) | 2
-||
+$A1D3 | ??? (Mentioned but doesn't do anything) | 2
 $A1D5 | Control Panel Enable or Race Active Flag? (On during race) | 1
 $A1D6 | Player Speed (4 BCD digits) | 2
-$A1D8 | Player Race Position (1 = 1st Place, 5 = Last Place) | 1
+$A1D8 | Current Player Race Position (1 = 1st Place, 5 = Last Place) | 1
 $A1D9 | Overtake flag? (value = 2 when driving pass biker) | 1
+$A1DA | Bonus Points (3 BCD digits) | 3
+$A1DD | ??? (probably padding) | 1
+$A1DE | "Checkered Flag" (Enabled on race finish, off when Robo appears) | 1
+$A1DF | Collision ID? | 1
+$A1E0 | Collision pointer? (always "$AFB5") | 2
 ||
-$A1E5 | Game Over Flag? (Off during race, 5 during game over) | 1
-$A1E6 | Number of Bikers at Finishline | 1 
+$A1E5 | Final Player Race Position (Off during race, 5 = game over) | 1
+$A1E6 | Number of Bikers at Finishline (counts up as bikers cross finish; 4 = game over) | 1 
 ||
 $A1E9 | Current Race Number | 2
 $A1EA | Number of Races Won | 1
