@@ -989,9 +989,13 @@ $A1F3 | ??? | 1
 $A1F4 | Current Robofficial Phrase Text Starting X-Position? | 1
 $A1F5 | Current Robofficial Phrase Test Pointer | 2
 ||
-$A218 | Array of sound IDs (highest to lowest priority?) (02, 09, 0A) | 1
-$A219 | Sound ID (typewriter?) | 1
-$A21A | Sound ID (Robofficial sounds) | 1
+$A217 | Sound ID Array #1 (1st byte = flag, 2nd byte = sound ID) | 2
+$A218 | (Either 02, 09, 0A)
+$A219 | Sound ID Array #2 (1st byte = flag, 2nd byte = sound ID) | 2
+$A21A | (Robofficial sounds 0C, 0D, 0E, 0F)
+$A21B | Sound ID Array #3 (1st byte = flag, 2nd byte = sound ID) | 2
+$A21D | Sound ID Array #4 (1st byte = flag, 2nd byte = sound ID) | 2
+
 
 ## Sound IDs
 
@@ -1032,3 +1036,21 @@ Here is the code that triggers the high score revving sound.
 4248: 35 86           PULS      PC,D            ; restore PC and D (return to previous routine)
 ```
 The $010A is some sort of flag and the sound ID.  The 0A is what gets sent to the sound board, while the 01 is cleared immediately after it's written to $A217 (probably to denote that the sound is playing).
+
+$4081 has the pointers to the sound effects array.  
+
+```
+$A222 | ???
+$A215 | Sound enable?
+$A224 | Sound ID Array #3
+$A217 | Explosion, High Score Revving
+$A219 | Robofficial sounds
+$A21D
+$A225
+$A21F | Race finish dings
+$A227
+$A22C
+$A22A
+$A22F
+$A232
+```
